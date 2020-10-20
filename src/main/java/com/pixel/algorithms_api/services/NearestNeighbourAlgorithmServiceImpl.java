@@ -24,7 +24,6 @@ public class NearestNeighbourAlgorithmServiceImpl implements NearestNeighbourAlg
         optionalFirstCoordinate.ifPresent(o -> {
             coordinatesList.getCoordinates().add(o);
             coordinates.remove(o);
-            System.out.println(coordinates.size());
             findNearestPoint(o, coordinates);
         });
         return listToResult;
@@ -32,7 +31,6 @@ public class NearestNeighbourAlgorithmServiceImpl implements NearestNeighbourAlg
 
 
     private void findNearestPoint(Coordinate coordinate, List<Coordinate> coordinates) {
-        System.out.println(coordinates.size());
         coordinates.forEach(coord -> calculateDistance(coordinate, coord));
         List<Double> temp = new ArrayList<>();
         Set<Map.Entry<Double, Coordinate>> entries = distances.entrySet();
@@ -72,10 +70,7 @@ public class NearestNeighbourAlgorithmServiceImpl implements NearestNeighbourAlg
 
         double p = 0.017453292519943295;
         double a = 0.5 - Math.cos((lat2 - lat1) * p) / 2 + Math.cos(lat1 * p) * Math.cos(lat2 * p) * (1 - Math.cos((lng2 - lng1) * p)) / 2;
-        double distance = 12742 * Math.asin(Math.sqrt(a));
-        System.out.println("Coordinate1: " + coordinate1.getName());
-        System.out.println("Coordinate2: " + coordinate2.getName());
-        return distance;
+        return 12742 * Math.asin(Math.sqrt(a));
     }
 
 

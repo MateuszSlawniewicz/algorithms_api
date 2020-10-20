@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+  <div class="col-10 offset-1">
+    <mat-card>
+      <mat-card-content>
+      <div class="example-full-width" [formGroup]="form" class="form">
+        <label for="number">Number to verify:</label><br/>
+        <input id="number" placeholder="Ex. 1234" type="text" formControlName="number" require>
+      </div>
+      <div class="buttons">
+  <button type="button" class="btn btn-primary" (click)="valid()" [disabled] ="!form.valid">Valid</button>
+  <button type="button" class="btn btn-primary" (click)="generateChecksum()" [disabled] = "!form.valid">Generate Checksum</button>
+</div>
+</mat-card-content>
+  </mat-card>
+
+</div>
+
+
+</div>
+<div class="row" *ngIf="output!=null">
+  <div class="col-10 offset-1">
+    <mat-card>
+      <mat-card-content>
+        <h5>{{output}}</h5>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+

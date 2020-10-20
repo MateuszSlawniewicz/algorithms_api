@@ -23,7 +23,7 @@ class LuhnAlgorithmServiceImplTest {
         //when
         boolean isValid = luhnAlgorithmServiceImpl.validateNumber(VALID_CARD_NUMBER_INPUT_2);
         //then
-        assertEquals(true, isValid);
+        assertTrue(isValid);
     }
 
     @Test
@@ -38,7 +38,7 @@ class LuhnAlgorithmServiceImplTest {
         //when
         boolean isValid = luhnAlgorithmServiceImpl.validateNumber(INVALID_INPUT);
         //then
-        assertEquals(false, isValid);
+        assertFalse(isValid);
     }
 
 

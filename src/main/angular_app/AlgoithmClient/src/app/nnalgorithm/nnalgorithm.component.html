@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="row">
+  <div class="col-10 offset-1">
+    <mat-card>
+      <mat-card-content>
+        <form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()">
+          <div class="card m-3">
+              <div class="card-body">
+                  <div class="form-row">
+                      <div class="form-group">
+                          <label >Number of Places</label>
+                          <select formControlName="numberOfPlaces" class="form-control" (change)="onChangePlace($event)">
+                              <option value=""></option>
+                              <option *ngFor="let i of [2,3,4,5,6,7,8,9,10,11]">{{i}}</option>
+                          </select>
+                      </div>
+                  </div>
+              </div>
+              <div *ngFor="let place of t.controls; let i = index" class="list-group list-group-flush">
+                  <div class="list-group-item">
+                      <h5 class="card-title">Place {{i + 1}}</h5>
+                      <div [formGroup]="place" class="form-row">
+                          <div class="form-group col-3">
+                              <label>Place</label>
+                              <input type="text" formControlName="place" class="form-control" />
+                          </div>
+                          <div class="form-group col-3">
+                              <label>Lat</label>
+                              <input type="number" formControlName="lat" class="form-control"/>
+                          </div>
+                          <div class="form-group col-3">
+                            <label>Lon</label>
+                            <input type="number" formControlName="lon" class="form-control" />
+                        </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="card-footer text-center">
+                  <button class="btn btn-primary">Generate track</button>
+              </div>
+          </div>
+      </form>
+  </mat-card-content>
+    </mat-card>
+  </div>
+  </div>
+  <div class="row" *ngIf="results.length>1">
+<div class="col-10 offset-1">
+ <mat-card  class="cards">
+        <mat-card-content>
+      <h5>DISTANCE:  {{distance}}</h5>
+    </mat-card-content>
+  </mat-card>
+  <mat-card  class="cards">
+    <mat-card-content>
+  <h5>RESULT OF ALGORITHM:</h5>
+</mat-card-content>
+</mat-card>
+
+      <mat-card *ngFor="let result of results" class="cards">
+        <mat-card-content>
+
+<p>{{result}}</p>
+</mat-card-content>
+</mat-card>
+</div>
+      </div>
+  </div>
+

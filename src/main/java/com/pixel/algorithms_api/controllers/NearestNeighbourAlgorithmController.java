@@ -3,15 +3,13 @@ package com.pixel.algorithms_api.controllers;
 import com.pixel.algorithms_api.model.NNACoordinatesList;
 import com.pixel.algorithms_api.model.NNACoordinatesListDTO;
 import com.pixel.algorithms_api.services.NearestNeighbourAlgorithmService;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-
+@CrossOrigin
 @RestController
 @RequestMapping(path = "/nna")
 public class NearestNeighbourAlgorithmController {
@@ -22,9 +20,10 @@ public class NearestNeighbourAlgorithmController {
         this.nearestNeighbourAlgorithmService = nearestNeighbourAlgorithmService;
     }
 
-
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @CrossOrigin
+    @RequestMapping( method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE )
     public ResponseEntity createRoadWithNNA(@Valid @RequestBody() NNACoordinatesList coordinatesList, Errors errors) {
+
         if (errors.hasErrors()) {
             return ResponseEntity.badRequest().body("Wrong type of request");
         }
